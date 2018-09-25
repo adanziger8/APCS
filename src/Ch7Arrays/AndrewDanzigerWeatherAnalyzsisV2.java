@@ -1,8 +1,8 @@
-//This is a program that takes a users number of days and temperatures and calculates the average temp and
+package Ch7Arrays;//This is a program that takes a users number of days and temperatures and calculates the average temp and
 //how many days are above the average temperature
 import java.util.Scanner;
 
-public class AndrewDanzigerWeatherAnalysis {
+public class AndrewDanzigerWeatherAnalysisV2 {
     public static void main (String[] args){
         Scanner input = new Scanner(System.in);//initializes scanner
         System.out.print("How many days' temperatures? ");//prompts user for number of days
@@ -25,16 +25,16 @@ public class AndrewDanzigerWeatherAnalysis {
         calculate(totaltemp, dayz, days);
     }
 
-        public static void calculate(double totaltemp, int[] dayz, int days){
-            double avg = totaltemp / days;//calculate average
-            System.out.println("Average temp = " + Math.round(avg * 10) / 10.0);//rounds average to only one decimal
-            int aboveavg = 0;//initilaize days above average
+    public static void calculate(double totaltemp, int[] dayz, int days){
+        double avg = totaltemp / days;//calculate average
+        System.out.println("Average temp = " + Math.round(avg * 10) / 10.0);//rounds average to only one decimal
+        int aboveavg = 0;//initilaize days above average
 
-            for (int j = 0; j <= dayz.length - 1; j++) {
-                if (dayz[j] > avg) {//for loop checking if each value in array is above average temp or not
-                    aboveavg++;//if temp is above average, adds one to this variable
-                }
+        for (int j = 0; j <= dayz.length - 1; j++) {
+            if (dayz[j] > avg) {//for loop checking if each value in array is above average temp or not
+                aboveavg++;//if temp is above average, adds one to this variable
             }
-            System.out.println(aboveavg + " days were above average.");//prints how many days are above average
         }
+        System.out.println(aboveavg + " days were above average.");//prints how many days are above average
+    }
 }
