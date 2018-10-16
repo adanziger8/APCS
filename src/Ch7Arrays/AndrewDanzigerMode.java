@@ -1,7 +1,7 @@
 package Ch7Arrays;
 import java.util.Scanner;
 //code to find most frequent number
-public class mostFrequesnt {
+public class AndrewDanzigerMode{
     public static void main(String[] args){
         Scanner console = new Scanner(System.in);
         System.out.print("Please enter a positive number: ");
