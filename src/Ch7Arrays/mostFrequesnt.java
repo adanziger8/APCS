@@ -1,6 +1,6 @@
 package Ch7Arrays;
 import java.util.Scanner;
-
+//code to find most frequent number
 public class mostFrequesnt {
     public static void main(String[] args){
         Scanner console = new Scanner(System.in);
