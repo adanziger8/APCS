@@ -1,5 +1,6 @@
 //This program reads a file of numbers no greater then 25 digits
 //and adds them together in each line printing the equation and the sum
+package Ch7Arrays;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
