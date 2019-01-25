@@ -2,6 +2,7 @@ package Ch10ArrayLists;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class ArrayListExcercise {
@@ -13,6 +14,13 @@ public class ArrayListExcercise {
         list.add("brown");
         list.add("fox");
         addStars(list);
+        Integer[] num1 = {1,4,8,11,15,17,28,41,59};
+        ArrayList<Integer> nums1 = new ArrayList<>(Arrays.asList(num1));
+
+        Integer[] num2 = {4,7,11,17,19,20,23,28,37,59,81};
+        ArrayList<Integer> nums2 = new ArrayList<>(Arrays.asList(num2));
+        intersect(nums1, nums2);
+
         Scanner fileread = new Scanner(new File("data.txt"));
         ArrayList<String> words = new ArrayList<String>();
         while(fileread.hasNextLine()){
@@ -50,5 +58,15 @@ public class ArrayListExcercise {
             words.add( i,"*");
         }
         System.out.println(words);
+    }
+
+    public static void intersect(ArrayList<Integer> num1, ArrayList<Integer> num2){
+        ArrayList<Integer> intersect = new ArrayList<>();
+        for(int i = 0; i < num1.size(); i++){
+            if(num2.contains(num1.get(i))){
+                intersect.add(num1.get(i));
+            }
+        }
+        System.out.println(intersect);
     }
 }
