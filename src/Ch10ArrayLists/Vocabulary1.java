@@ -18,6 +18,13 @@ public class Vocabulary1 {
         ArrayList<String> commonWords = overlap(list1, list2);
         System.out.println(commonWords);
 
+        System.out.println("Percent Overlap File 1: " + percCalc(commonWords, list1));
+        System.out.println("Percent Overlap File 2: " + percCalc(commonWords, list2));
+
+    }
+
+    public static double percCalc(ArrayList<String> common, ArrayList<String> list){
+        return (double)common.size()*100/list.size();
     }
 
     //This method accepts a Scanner object and populates an

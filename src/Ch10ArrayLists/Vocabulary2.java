@@ -2,6 +2,7 @@ package src.Ch10ArrayLists;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
@@ -18,6 +19,12 @@ public class Vocabulary2 {
         ArrayList<String> commonWords = overlap(list1, list2);
         System.out.println(commonWords);
 
+        System.out.println(percCalc(commonWords, list1));
+
+    }
+
+    public static double percCalc(ArrayList<String> common, ArrayList<String> list){
+        return common.size()*100/list.size();
     }
 
     //This method accepts a Scanner object and populates an
