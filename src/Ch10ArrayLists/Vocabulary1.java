@@ -2,9 +2,12 @@ package src.Ch10ArrayLists;
 
         import java.io.File;
         import java.io.FileNotFoundException;
+        import java.text.DecimalFormat;
         import java.util.ArrayList;
         import java.util.Collections;
         import java.util.Scanner;
+
+
 
 public class Vocabulary1 {
     public static void main(String[] args) throws FileNotFoundException {
@@ -15,11 +18,14 @@ public class Vocabulary1 {
         ArrayList<String> list1 = getWords(fileread1);
         ArrayList<String> list2 = getWords(fileread2);
 
+        System.out.println(list1);
+        System.out.println(list2);
         ArrayList<String> commonWords = overlap(list1, list2);
         System.out.println(commonWords);
 
-        System.out.println("Percent Overlap File 1: " + percCalc(commonWords, list1));
-        System.out.println("Percent Overlap File 2: " + percCalc(commonWords, list2));
+        DecimalFormat df = new DecimalFormat("###.##");
+        System.out.println("Percent Overlap File 1: " + df.format(percCalc(commonWords, list1)));
+        System.out.println("Percent Overlap File 2: " + df.format(percCalc(commonWords, list2)));
 
     }
 
@@ -32,6 +38,8 @@ public class Vocabulary1 {
     //sorted before removing any duplication. This method returns
     //an ArrayList of Strings that contains unique words
     public static ArrayList<String> getWords(Scanner input) {
+        input.useDelimiter("[^a-zA-Z']+");
+
         //read all words into an ArrayList
         ArrayList<String> words = new ArrayList<String>();
         while (input.hasNext()) {
