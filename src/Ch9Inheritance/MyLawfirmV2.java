@@ -2,10 +2,10 @@ package src.Ch9Inheritance;
 //this client program instantiates
 public class MyLawfirmV2 {
     public static void main(String[] args){
-        EmployeeV2[] myEmployees = {new LawyerV2("Gaby"),
-                                new SecretaryV2("Andrew"),
-                                new MarketerV2("Charlie")};
-        printInfo(myEmployees);
+        //EmployeeV2[] myEmployees = {new LawyerV2("Gaby"),
+                             //   new SecretaryV2("Andrew"),
+                            //    new MarketerV2("Charlie")};
+        //printInfo(myEmployees);
 
 
     }

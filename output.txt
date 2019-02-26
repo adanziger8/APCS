@@ -1,0 +1,20 @@
+Region Name: cure for cancer protein
+Nucleotides:ATGCCACTATGGTAG
+Region Name: captain picard hair growth protein
+Nucleotides:ATGCCAACATGGATGCCCGATATGGATTGA
+Region Name: bogus protein
+Nucleotides:CCATT-AATGATCA-CAGTT
+Region Name: michael jordan mad hops protein
+Nucleotides:ATGAG-ATC-CGTGATGTGGG-AT-CCTA-CT-CATTAA
+Region Name: paris hilton phony protein
+Nucleotides:ATGC-CAACATGGATGCCCTAAG-ATATGGATTAGTGA
+Region Name: jimi hendrix guitar talent protein
+Nucleotides:ATGATAATTAGTTTTAATATCAGA-CTGTAA
+Region Name: admiral grace murray hopper protein
+Nucleotides:ATGC-AATT--GC-----TCGA--------TTAG
+Region Name: tyler durden's brain protein
+Nucleotides:ATGATACCTATGAGTAATGTGGACCATATCCAAACTATAGGCATTGTCGGACCAACGATCGATTGGTTATACTGA
+Region Name: mini me growth hormone
+Nucleotides:ATGGGACGCTGA
+Region Name: Nyan Cat protein
+Nucleotides:CAT-CAT-CAT-CAT-CAT-CAT-CAT-CAT-CAT-CAT
