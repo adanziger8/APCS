@@ -1,9 +1,16 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Arrays;
 import java.util.Scanner;
 import java.io.PrintStream;
 
 public class AndrewDanzigerDNA{
+    //four class constants
+    public static final int minCods = 3;
+    public static final double minGCpercent = 30.0;
+    public static final int uniNucs = 4;
+    public static final int nucPerCodon = 3;
+
     public static void main(String[] args)throws FileNotFoundException{
         System.out.println("This program reports information about DNA");
         System.out.println("nucleotide sequences that may encode proteins");
@@ -41,30 +48,52 @@ public class AndrewDanzigerDNA{
             //next line is test answers which are sent to calculate method
             nucs = in.nextLine().toUpperCase();
             output.println("Nucleotides:" + nucs);
-            String data = calculate(nucs);
+            String data = printData(nucs);
             //prints test results to output file
-            //output.println(data+"\n");
+            output.println(data+"\n");
         }
     }
 
-    public static String calculate(String nucs){
-        int[] nucCount = new int[4];
+    public static String printData(String nucs){
+        int[] nucCount = new int[uniNucs];
         String[] allNucs = nucs.split("");
+        double[] nucMass = new double[uniNucs];
         //System.out.println(allNucs);
+        double amass = 0.0, cmass = 0.0, gmass = 0.0, tmass = 0.0, jmass = 0.0, totalmass = 0.0;
+
         for(int i = 0; i < allNucs.length; i++){
             if(allNucs[i].equals("A")){
                 nucCount[0]++;
-           }
-            if(allNucs[i].equals("C")){
+                amass += 135.128;
+                totalmass += 135.128;
+           } else if(allNucs[i].equals("C")){
                 nucCount[1]++;
-            }
-            if(allNucs[i].equals("G")){
+                cmass += 111.103;
+                totalmass += 111.103;
+            } else if(allNucs[i].equals("G")){
                 nucCount[2]++;
-            }
-            if(allNucs[i].equals("T")){
+                gmass += 151.128;
+                totalmass += 151.128;
+            } else if(allNucs[i].equals("T")){
                 nucCount[3]++;
+                tmass += 125.107;
+                totalmass += 125.107;
+            } else {
+                totalmass += 100.00;
             }
         }
-        return "Nuc. Counts:" + nucCount;
+
+        nucMass[0] = Math.round(amass/totalmass*1000.0)/10.0;
+        nucMass[1] = Math.round(cmass/totalmass*1000.0)/10.0;
+        nucMass[2] = Math.round(gmass/totalmass*1000.0)/10.0;
+        nucMass[3] = Math.round(tmass/totalmass*1000.0)/10.0;
+
+
+        return "Nuc. Counts:" + Arrays.toString(nucCount) + "\n" + "Total Mass%: " + Arrays.toString(nucMass) + " of " +
+                Math.round(totalmass*10.0)/10.0;
+    }
+
+    public static int[] countNucs(){
+
     }
 }
