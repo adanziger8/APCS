@@ -6,10 +6,10 @@ import java.io.PrintStream;
 
 public class AndrewDanzigerDNA{
     //four required class constants
-    public static final int minCods = 5;
-    public static final double minGCpercent = 30.0;
-    public static final int uniNucs = 4;
-    public static final int nucPerCodon = 3;
+    public static final int minCods = 5;    //min number of required codons
+    public static final double minGCpercent = 30.0; //min percent of G and C nucleotides of total mass
+    public static final int uniNucs = 4;    //number of unique nucleotides (A, T, G, C)
+    public static final int nucPerCodon = 3;    //number of nucleotides per codon
 
     public static void main(String[] args)throws FileNotFoundException{
         System.out.println("This program reports information about DNA");
@@ -25,40 +25,38 @@ public class AndrewDanzigerDNA{
                 System.out.print("File not found. Try again: ");
             }
         }
+        //creates scanner to read input file
         Scanner in = new Scanner(fileIn);
         //prompts user to type name of output file and creates it
-        String fileOutName = "";
         System.out.print("Output file name: ");
-        fileOutName += console.next();
+        String fileOutName = console.next();
         //creates new file and printstream to the file
         PrintStream output = new PrintStream(new File(fileOutName));
-
         //calls method to read file, parameters are print Stream and scanner (reading file)
         readFile(output, in);
     }
-
+    //method that reads the input file
     public static void readFile(PrintStream output, Scanner in){
         String name = "";
         String nucs = "";
-
         while(in.hasNextLine()){
             //first line is name and sends to output file
             name = in.nextLine();
             output.println("Region Name: " + name);
             //next line is test answers which are sent to calculate method
             nucs = in.nextLine().toUpperCase();
-            output.println("Nucleotides:" + nucs);
+            output.println("Nucleotides: " + nucs);
             String data = printData(nucs);
-            //prints test results to output file
+            //prints data to output file
             output.println(data+"\n");
         }
     }
-
+    //method that returns all data to be printed
     public static String printData(String nucs){
+        //arrays of int for count of unique nucleotides, String to separate each nucleotide, and double for masses of each nucleotide
         int[] nucCount = new int[uniNucs];
         String[] allNucs = nucs.split("");
         double[] nucMasses = new double[uniNucs];
-        //System.out.println(allNucs);
         nucCount = countNucs(allNucs, nucCount);
         //calls method calcMass to retrieve the double value of total mass
         double totalmass = calcMass(allNucs);
@@ -73,17 +71,17 @@ public class AndrewDanzigerDNA{
         nucMasses[1] = Math.round(cmass/totalmass*1000.0)/10.0;
         nucMasses[2] = Math.round(gmass/totalmass*1000.0)/10.0;
         nucMasses[3] = Math.round(tmass/totalmass*1000.0)/10.0;
-
+    //array of Strings holding the list of codons
         String[] codonList = makeList(allNucs);
-
-        boolean protein = isProtein(codonList, cmass, gmass);
-
-        return "Nuc. Counts:" + Arrays.toString(nucCount) + "\nTotal Mass%: " + Arrays.toString(nucMasses) + " of " +
-                Math.round(totalmass*10.0)/10.0 + "\nCodons List: " + Arrays.toString(codonList);
+    //String of "YES" or "NO" whether the segment is a protein or not
+        String protein = isProtein(codonList, cmass, gmass);
+    //returns all data to the main method to be printed
+        return "Nuc. Counts: " + Arrays.toString(nucCount) + "\nTotal Mass%: " + Arrays.toString(nucMasses) + " of " +
+                Math.round(totalmass*10.0)/10.0 + "\nCodons List: " + Arrays.toString(codonList) + "\nIs Protein?: " +
+                protein;
     }
-
+    //method to count the number of unique nucleotides in a segment of DNA
     public static int[] countNucs(String[] allNucs, int[] nucCount){
-
         for(int i = 0; i < allNucs.length; i++){
             if(allNucs[i].equals("A")){
                 nucCount[0]++;
@@ -97,11 +95,10 @@ public class AndrewDanzigerDNA{
         }
         return nucCount;
     }
-
+    //method to calculate the toal mass of a segment of DNA
     public static double calcMass(String[] allNucs){
         double[] nucMasses = new double[uniNucs];
         double totalmass = 0.0;
-
         for(int i = 0; i < allNucs.length; i++){
             if(allNucs[i].equals("A")){
                 totalmass += 135.128;
@@ -115,13 +112,13 @@ public class AndrewDanzigerDNA{
                 totalmass += 100.00;
             }
         }
-
         return totalmass;
     }
-
+    //method to make a list of codons (array) ignoring the junk regions
     public static String[] makeList(String[] allNucs){
         String[] codonList = new String[1];
         String codon = "";
+        //adds proper nucleotide to current codon String
         for(int i = 0; i < allNucs.length; i++){
             if(allNucs[i].equals("A")){
                 codon += "A";
@@ -142,7 +139,7 @@ public class AndrewDanzigerDNA{
         }
         return codonList;
     }
-
+    //method to add one cell to array of Codons if needed
     public static String[] newCodonList(String[] codonList){
         String[] tempList = new String[codonList.length+1];
         for(int i = 0; i < codonList.length; i++){
@@ -150,9 +147,18 @@ public class AndrewDanzigerDNA{
         }
         return tempList;
     }
-
-    public static boolean isProtein(String[] codonList, double cmass, double gmass){
+    //method that checks all requirements for a sequence of DNA to be a protein
+    public static String isProtein(String[] codonList, double cmass, double gmass){
         double cgmass = (cmass + gmass)*10.0;
-        //if()
+        //checks if the percent of G and C is >= 30%, there are at least 5 codons, first codon is "ATG" (start)
+        if(cgmass >= minGCpercent && codonList.length>= minCods && codonList[0].equals("ATG") &&
+                //if last codon is "TAA" "TAG" or "TGA" (stop)
+                (codonList[codonList.length-1].equals("TAA") || codonList[codonList.length-1].equals("TAG") ||
+                        codonList[codonList.length-1].equals("TGA"))){
+            return "YES";
+        } else {
+            //if not, then not a protein
+            return "NO";
+        }
     }
 }
