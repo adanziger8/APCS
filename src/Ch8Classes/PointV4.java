@@ -71,6 +71,11 @@ public class PointV4 {
         return Math.sqrt(dx*dx + dy*dy);
     }
 
+    public boolean equals(Object other){
+        PointV4 o = (PointV4)other;
+        return this.getX()==o.getX() && this.getY()==o.getY();
+    }
+
     public String toString() {
         return("(" + x + "," + y + ")");
     }
